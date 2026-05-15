@@ -333,8 +333,74 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Customer Reviews */}
+      <section className="py-24 bg-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-sm font-bold uppercase tracking-widest px-5 py-2 rounded-full mb-6">
+              <span>Średnia ocena 9.4/10 na podstawie 25+ opinii</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black uppercase">
+              Opinie Naszych Klientów
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "K. Słodyczka",
+                text: "Bardzo rzetelna firma budowlana. Prace wykonane dokładnie, sprawnie i zgodnie z ustalonym terminem. To ekipa, której można zaufać – są słowni i rzetelni, a ogromny plus za doradztwo techniczne.",
+                id: "slodyczka",
+              },
+              {
+                name: "Ewa Sentysz",
+                text: "Usługa wykonana profesjonalnie i na najwyższym poziomie. Kontakt z Panem Wojtkiem był doskonały. Wykazuje się dużą elastycznością – potrafi doradzić i zmodyfikować projekt pod wizję klienta.",
+                id: "sentysz",
+              },
+              {
+                name: "Paweł Szymala",
+                text: "Polecam! Świetna, zgrana ekipa. Całość prac wykonana solidnie i bez zarzutu. Termin i cena zgodnie z ustaleniami. Profesjonalne podejście do tematu.",
+                id: "szymala",
+              },
+            ].map((review, index) => (
+              <motion.div
+                key={review.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+                className="bg-background rounded-sm border border-border p-8 flex flex-col gap-5"
+                data-testid={`review-card-${review.id}`}
+              >
+                <div className="flex gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-primary fill-primary" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-gray-300 leading-relaxed flex-1">
+                  &ldquo;{review.text}&rdquo;
+                </p>
+                <div className="flex items-center gap-3 pt-2 border-t border-border">
+                  <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-black text-sm">
+                    {review.name.charAt(0)}
+                  </div>
+                  <span className="font-bold text-foreground">{review.name}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form */}
-      <section id="kontakt" className="py-24 bg-[#1a1a1a]">
+      <section id="kontakt" className="py-24 bg-background">
         <div className="max-w-3xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
