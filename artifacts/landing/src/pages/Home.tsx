@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb } from "lucide-react";
 
+import img24 from "@assets/24_1778844190815.jpeg";
 import img27 from "@assets/27_1778844190817.jpeg";
 import img28 from "@assets/28_1778844190817.jpeg";
 import img20 from "@assets/20_1778844190813.jpeg";
@@ -26,7 +27,7 @@ import imgF37 from "@assets/37_1778844660563.jpeg";
 import imgF38 from "@assets/38_1778844660564.jpeg";
 import imgF39 from "@assets/39_1778844660564.jpeg";
 import imgF40 from "@assets/40_1778844660565.jpeg";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -42,30 +43,30 @@ import { useToast } from "@/hooks/use-toast";
 
 type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury" | "Prace Wykończeniowe" | "Baseny i Projekty Specjalne";
 
-const GALLERY: { src: string; caption: string; category: GalleryCategory; featured?: boolean }[] = [
-  // Featured first in "Wszystkie"
-  { src: imgDom3, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featured: true },
-  { src: imgDom4, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featured: true },
-  { src: imgBasen3, caption: "Gotowy basen ogrodowy z obrysem z płyt tarasowych", category: "Baseny i Projekty Specjalne" },
-  // Konstrukcje i Mury
-  { src: imgDom1, caption: "Tradycyjna architektura Podhala – domy z płazów i konstrukcji mieszanej", category: "Konstrukcje i Mury" },
+const GALLERY: { src: string; caption: string; category: GalleryCategory; featuredInAll?: boolean }[] = [
+  // ── Konstrukcje i Mury ──────────────────────────────────────────────────
+  { src: imgDom3, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featuredInAll: true },
+  { src: imgDom4, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featuredInAll: true },
+  { src: imgDom1, caption: "Tradycyjna architektura Podhala – domy z płazów i konstrukcji mieszanej", category: "Konstrukcje i Mury", featuredInAll: true },
   { src: imgDom2, caption: "Tradycyjna architektura Podhala – domy z płazów i konstrukcji mieszanej", category: "Konstrukcje i Mury" },
   { src: imgDom5, caption: "Kompleksowa realizacja dachu i konstrukcji nośnej", category: "Konstrukcje i Mury" },
   { src: imgDom9, caption: "Nowoczesne budownictwo jednorodzinne – realizacja w Nowym Targu", category: "Konstrukcje i Mury" },
   { src: img20, caption: "Strop monolityczny w trakcie realizacji", category: "Konstrukcje i Mury" },
   { src: img22, caption: "Murowanie ścian z bloczków ACC – stan surowy", category: "Konstrukcje i Mury" },
-  // Solidne Fundamenty
-  { src: imgF38, caption: "Zbrojenie stropu z panoramą Tatr w tle", category: "Solidne Fundamenty" },
+  // ── Solidne Fundamenty ──────────────────────────────────────────────────
+  { src: imgF38, caption: "Zbrojenie stropu z panoramą Tatr w tle", category: "Solidne Fundamenty", featuredInAll: true },
+  { src: img24, caption: "Zbrojenie i szalunki schodów żelbetowych", category: "Solidne Fundamenty", featuredInAll: true },
   { src: imgF36, caption: "Precyzyjna wylewka płyty fundamentowej", category: "Solidne Fundamenty" },
   { src: imgF37, caption: "Zbrojenie ław fundamentowych – wiązanie prętów", category: "Solidne Fundamenty" },
   { src: imgF39, caption: "Ściany fundamentowe z bloczków betonowych", category: "Solidne Fundamenty" },
   { src: imgF40, caption: "Betonowanie ław w szalunkach drewnianych", category: "Solidne Fundamenty" },
   { src: img27, caption: "Systemowe szalunki fundamentowe ULMA", category: "Solidne Fundamenty" },
   { src: img28, caption: "Montaż szalunków ULMA – fundamenty głębinowe", category: "Solidne Fundamenty" },
-  // Baseny
+  // ── Baseny i Projekty Specjalne ─────────────────────────────────────────
+  { src: imgBasen3, caption: "Gotowy basen ogrodowy z obrysem z płyt tarasowych", category: "Baseny i Projekty Specjalne", featuredInAll: true },
   { src: imgBasen1, caption: "Kompleksowy montaż basenu – osadzanie misy basenowej", category: "Baseny i Projekty Specjalne" },
   { src: imgBasen2, caption: "Transport i osadzanie basenu żurawiem dźwigowym", category: "Baseny i Projekty Specjalne" },
-  // Prace Wykończeniowe
+  // ── Prace Wykończeniowe ─────────────────────────────────────────────────
   { src: img2, caption: "Gotowy sufit podwieszany G-K z integracją klimatyzacji", category: "Prace Wykończeniowe" },
   { src: img4, caption: "Stelaż systemowy G-K pod sufit podwieszany", category: "Prace Wykończeniowe" },
   { src: img5, caption: "Precyzyjny montaż profili sufitowych G-K", category: "Prace Wykończeniowe" },
@@ -96,7 +97,7 @@ export default function Home() {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   const filteredGallery = activeFilter === "Wszystkie"
-    ? GALLERY
+    ? GALLERY.filter((img) => img.featuredInAll)
     : GALLERY.filter((img) => img.category === activeFilter);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -433,39 +434,43 @@ export default function Home() {
           </motion.div>
 
           {/* Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-          >
-            {filteredGallery.map((item, index) => (
-              <motion.div
-                key={item.src}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                className="group relative overflow-hidden rounded-sm cursor-pointer aspect-[4/3]"
-                onClick={() => setLightboxSrc(item.src)}
-                data-testid={`gallery-item-${index}`}
-              >
-                <img
-                  src={item.src}
-                  alt={item.caption}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                {/* Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="inline-block bg-primary text-background text-xs font-bold uppercase tracking-wider px-2 py-0.5 mb-2 rounded-sm">
-                    {item.category}
-                  </span>
-                  <p className="text-white text-sm font-semibold leading-tight">{item.caption}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFilter}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
+              {filteredGallery.map((item, index) => (
+                <motion.div
+                  key={item.src}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.06, duration: 0.22 }}
+                  className="group relative overflow-hidden rounded-sm cursor-pointer aspect-[4/3]"
+                  onClick={() => setLightboxSrc(item.src)}
+                  data-testid={`gallery-item-${index}`}
+                >
+                  <img
+                    src={item.src}
+                    alt={item.caption}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Caption */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <span className="inline-block bg-primary text-background text-xs font-bold uppercase tracking-wider px-2 py-0.5 mb-2 rounded-sm">
+                      {item.category}
+                    </span>
+                    <p className="text-white text-sm font-semibold leading-tight">{item.caption}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
