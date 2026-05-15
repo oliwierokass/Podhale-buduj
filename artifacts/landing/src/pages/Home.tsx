@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb } from "lucide-react";
+import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb, MapPin } from "lucide-react";
 
 import img24 from "@assets/24_1778844190815.jpeg";
 import imgW2 from "@assets/wnetrze_2_1778845706384.jpeg";
@@ -544,6 +544,61 @@ export default function Home() {
                     {review.name.charAt(0)}
                   </div>
                   <span className="font-bold text-foreground">{review.name}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Service Area */}
+      <section className="py-24" style={{ backgroundColor: "#1a1a1a" }}>
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <span className="inline-flex items-center gap-2 text-primary text-xs font-extrabold uppercase tracking-widest mb-4">
+              <MapPin size={14} />
+              Zasięg działania
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white mb-4">
+              Gdzie Działamy?
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+              Lokalna firma z Nowego Targu z wieloletnim doświadczeniem w górskim budownictwie.
+              Znamy specyfikę terenu i wymagania budowlane tego regionu.
+            </p>
+          </motion.div>
+
+          {/* 4-column grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { title: "Powiat nowotarski", text: "Nowy Targ i okolice" },
+              { title: "Powiat tatrzański", text: "Zakopane i okolice" },
+              { title: "Powiat suski",      text: "Sucha Beskidzka" },
+              { title: "Szczawnica",        text: "i okolice" },
+            ].map((area, index) => (
+              <motion.div
+                key={area.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group flex flex-col items-center text-center gap-4 p-8 rounded-sm border border-white/10 transition-all duration-250 hover:border-primary hover:bg-white/5 cursor-default"
+                style={{ backgroundColor: "#232323" }}
+              >
+                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-primary/15 group-hover:bg-primary/25 transition-colors duration-250">
+                  <MapPin className="text-primary" size={26} />
+                </div>
+                <div>
+                  <p className="text-white font-black text-lg uppercase tracking-wide leading-snug">
+                    {area.title}
+                  </p>
+                  <p className="text-gray-400 text-sm mt-1">{area.text}</p>
                 </div>
               </motion.div>
             ))}
