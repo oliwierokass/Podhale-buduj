@@ -5,6 +5,13 @@ import * as z from "zod";
 import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb } from "lucide-react";
 
 import img24 from "@assets/24_1778844190815.jpeg";
+import imgW2 from "@assets/wnetrze_2_1778845706384.jpeg";
+import imgW3 from "@assets/wnetrze_3_1778845706385.jpeg";
+import imgW4 from "@assets/wnetrze_4_1778845706385.jpeg";
+import imgW5 from "@assets/wnetrze_5_1778845706386.jpeg";
+import imgW6 from "@assets/wnetrze_6_1778845706386.jpeg";
+import imgW7 from "@assets/wnetrze_7_1778845706387.jpeg";
+import imgWMural from "@assets/wnetrze_1778845706387.jpeg";
 import img27 from "@assets/27_1778844190817.jpeg";
 import img28 from "@assets/28_1778844190817.jpeg";
 import img20 from "@assets/20_1778844190813.jpeg";
@@ -41,21 +48,21 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
-type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury" | "Prace Wykończeniowe" | "Baseny i Projekty Specjalne";
+type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury" | "Wykończenia i Wnętrza" | "Baseny i Projekty Specjalne";
 
-const GALLERY: { src: string; caption: string; category: GalleryCategory; featuredInAll?: boolean }[] = [
+const GALLERY: { src: string; caption: string; category: GalleryCategory; featuredInAll?: boolean; badge?: string }[] = [
   // ── Konstrukcje i Mury ──────────────────────────────────────────────────
   { src: imgDom3, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featuredInAll: true },
-  { src: imgDom4, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featuredInAll: true },
   { src: imgDom1, caption: "Tradycyjna architektura Podhala – domy z płazów i konstrukcji mieszanej", category: "Konstrukcje i Mury", featuredInAll: true },
+  { src: imgDom4, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury" },
   { src: imgDom2, caption: "Tradycyjna architektura Podhala – domy z płazów i konstrukcji mieszanej", category: "Konstrukcje i Mury" },
   { src: imgDom5, caption: "Kompleksowa realizacja dachu i konstrukcji nośnej", category: "Konstrukcje i Mury" },
   { src: imgDom9, caption: "Nowoczesne budownictwo jednorodzinne – realizacja w Nowym Targu", category: "Konstrukcje i Mury" },
   { src: img20, caption: "Strop monolityczny w trakcie realizacji", category: "Konstrukcje i Mury" },
   { src: img22, caption: "Murowanie ścian z bloczków ACC – stan surowy", category: "Konstrukcje i Mury" },
   // ── Solidne Fundamenty ──────────────────────────────────────────────────
-  { src: imgF38, caption: "Zbrojenie stropu z panoramą Tatr w tle", category: "Solidne Fundamenty", featuredInAll: true },
-  { src: img24, caption: "Zbrojenie i szalunki schodów żelbetowych", category: "Solidne Fundamenty", featuredInAll: true },
+  { src: imgF38, caption: "Zbrojenie stropu z panoramą Tatr w tle", category: "Solidne Fundamenty" },
+  { src: img24, caption: "Zbrojenie i szalunki schodów żelbetowych", category: "Solidne Fundamenty" },
   { src: imgF36, caption: "Precyzyjna wylewka płyty fundamentowej", category: "Solidne Fundamenty" },
   { src: imgF37, caption: "Zbrojenie ław fundamentowych – wiązanie prętów", category: "Solidne Fundamenty" },
   { src: imgF39, caption: "Ściany fundamentowe z bloczków betonowych", category: "Solidne Fundamenty" },
@@ -66,14 +73,21 @@ const GALLERY: { src: string; caption: string; category: GalleryCategory; featur
   { src: imgBasen3, caption: "Gotowy basen ogrodowy z obrysem z płyt tarasowych", category: "Baseny i Projekty Specjalne", featuredInAll: true },
   { src: imgBasen1, caption: "Kompleksowy montaż basenu – osadzanie misy basenowej", category: "Baseny i Projekty Specjalne" },
   { src: imgBasen2, caption: "Transport i osadzanie basenu żurawiem dźwigowym", category: "Baseny i Projekty Specjalne" },
-  // ── Prace Wykończeniowe ─────────────────────────────────────────────────
-  { src: img2, caption: "Gotowy sufit podwieszany G-K z integracją klimatyzacji", category: "Prace Wykończeniowe" },
-  { src: img4, caption: "Stelaż systemowy G-K pod sufit podwieszany", category: "Prace Wykończeniowe" },
-  { src: img5, caption: "Precyzyjny montaż profili sufitowych G-K", category: "Prace Wykończeniowe" },
-  { src: img3, caption: "Układanie płyt G-K na gotowej konstrukcji", category: "Prace Wykończeniowe" },
+  // ── Wykończenia i Wnętrza ────────────────────────────────────────────────
+  { src: imgW4, caption: "Nowoczesne łazienki – montaż armatury podtynkowej i spieków kwarcowych.", category: "Wykończenia i Wnętrza", featuredInAll: true },
+  { src: imgW5, caption: "Artystyczne wykończenia w drewnie – tradycyjne detale podhalańskie i nowoczesny komfort.", category: "Wykończenia i Wnętrza", featuredInAll: true, badge: "Kunszt Podhalański" },
+  { src: imgW2, caption: "Precyzyjne układanie gresu z systemem poziomowania – idealna płaszczyzna.", category: "Wykończenia i Wnętrza", featuredInAll: true, badge: "Precyzja 1mm" },
+  { src: imgW3, caption: "Precyzyjne układanie gresu z systemem poziomowania – idealna płaszczyzna.", category: "Wykończenia i Wnętrza", badge: "Precyzja 1mm" },
+  { src: imgW6, caption: "Artystyczne wykończenia w drewnie – tradycyjne detale podhalańskie i nowoczesny komfort.", category: "Wykończenia i Wnętrza", badge: "Kunszt Podhalański" },
+  { src: imgW7, caption: "Artystyczne wykończenia w drewnie – tradycyjne detale podhalańskie i nowoczesny komfort.", category: "Wykończenia i Wnętrza", badge: "Kunszt Podhalański" },
+  { src: imgWMural, caption: "Kompleksowe wykończenia mieszkań i apartamentów pod klucz.", category: "Wykończenia i Wnętrza" },
+  { src: img2, caption: "Gotowy sufit podwieszany G-K z integracją klimatyzacji", category: "Wykończenia i Wnętrza" },
+  { src: img4, caption: "Stelaż systemowy G-K pod sufit podwieszany", category: "Wykończenia i Wnętrza" },
+  { src: img5, caption: "Precyzyjny montaż profili sufitowych G-K", category: "Wykończenia i Wnętrza" },
+  { src: img3, caption: "Układanie płyt G-K na gotowej konstrukcji", category: "Wykończenia i Wnętrza" },
 ];
 
-const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Konstrukcje i Mury", "Solidne Fundamenty", "Prace Wykończeniowe", "Baseny i Projekty Specjalne"];
+const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Konstrukcje i Mury", "Solidne Fundamenty", "Wykończenia i Wnętrza", "Baseny i Projekty Specjalne"];
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Imię i nazwisko jest wymagane" }),
@@ -458,6 +472,12 @@ export default function Home() {
                     alt={item.caption}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  {/* Permanent badge (top-left) */}
+                  {item.badge && (
+                    <span className="absolute top-3 left-3 z-10 bg-primary text-background text-[10px] font-extrabold uppercase tracking-widest px-2 py-1 rounded-sm shadow-lg">
+                      {item.badge}
+                    </span>
+                  )}
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   {/* Caption */}
