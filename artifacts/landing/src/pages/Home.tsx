@@ -15,12 +15,12 @@ import img5 from "@assets/5_1778844190812.jpeg";
 import imgBasen1 from "@assets/basen_1_1778844660565.jpeg";
 import imgBasen2 from "@assets/basen_2_1778844660565.jpeg";
 import imgBasen3 from "@assets/basen_3_1778844660566.jpeg";
-import imgDom1 from "@assets/dom_1_1778844660566.jpeg";
-import imgDom2 from "@assets/dom_2_1778844660567.jpeg";
-import imgDom3 from "@assets/dom_3_1778844660567.jpeg";
-import imgDom4 from "@assets/dom_4_1778844660568.jpeg";
-import imgDom5 from "@assets/dom_5_1778844660568.jpeg";
-import imgDom9 from "@assets/dom_9_1778844660568.jpeg";
+import imgDom1 from "@assets/dom_1_1778844985146.jpeg";
+import imgDom2 from "@assets/dom_2_1778844985147.jpeg";
+import imgDom3 from "@assets/dom_3_1778844985147.jpeg";
+import imgDom4 from "@assets/dom_4_1778844985147.jpeg";
+import imgDom5 from "@assets/dom_5_1778844985148.jpeg";
+import imgDom9 from "@assets/dom_9_1778844985148.jpeg";
 import imgF36 from "@assets/36_1778844660563.jpeg";
 import imgF37 from "@assets/37_1778844660563.jpeg";
 import imgF38 from "@assets/38_1778844660564.jpeg";
@@ -44,14 +44,14 @@ type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury"
 
 const GALLERY: { src: string; caption: string; category: GalleryCategory; featured?: boolean }[] = [
   // Featured first in "Wszystkie"
-  { src: imgDom3, caption: "Budowa domu murowanego – stan surowy otwarty", category: "Konstrukcje i Mury", featured: true },
-  { src: imgDom4, caption: "Więźba dachowa i ściany szczytowe – stan surowy", category: "Konstrukcje i Mury", featured: true },
+  { src: imgDom3, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featured: true },
+  { src: imgDom4, caption: "Nowoczesne rezydencje – stan surowy otwarty z precyzyjnym wykonaniem więźby dachowej", category: "Konstrukcje i Mury", featured: true },
   { src: imgBasen3, caption: "Gotowy basen ogrodowy z obrysem z płyt tarasowych", category: "Baseny i Projekty Specjalne" },
   // Konstrukcje i Mury
-  { src: imgDom1, caption: "Tradycyjna konstrukcja drewniana w stylu podhalańskim", category: "Konstrukcje i Mury" },
-  { src: imgDom2, caption: "Budowa domu drewnianego – deskowanie i pokrycie dachowe", category: "Konstrukcje i Mury" },
-  { src: imgDom5, caption: "Kompleksowa budowa – izolacja i drenaż fundamentów", category: "Konstrukcje i Mury" },
-  { src: imgDom9, caption: "Aktywne prace budowlane – stan surowy z maszynerią", category: "Konstrukcje i Mury" },
+  { src: imgDom1, caption: "Tradycyjna architektura Podhala – domy z płazów i konstrukcji mieszanej", category: "Konstrukcje i Mury" },
+  { src: imgDom2, caption: "Tradycyjna architektura Podhala – domy z płazów i konstrukcji mieszanej", category: "Konstrukcje i Mury" },
+  { src: imgDom5, caption: "Kompleksowa realizacja dachu i konstrukcji nośnej", category: "Konstrukcje i Mury" },
+  { src: imgDom9, caption: "Nowoczesne budownictwo jednorodzinne – realizacja w Nowym Targu", category: "Konstrukcje i Mury" },
   { src: img20, caption: "Strop monolityczny w trakcie realizacji", category: "Konstrukcje i Mury" },
   { src: img22, caption: "Murowanie ścian z bloczków ACC – stan surowy", category: "Konstrukcje i Mury" },
   // Solidne Fundamenty
