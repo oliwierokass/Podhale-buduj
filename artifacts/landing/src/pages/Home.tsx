@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone } from "lucide-react";
+import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -206,8 +206,83 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Clients Choose Us */}
+      <section className="py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 leading-tight">
+              Dlaczego Klienci<br />
+              <span className="relative inline-block">
+                Nas Wybierają
+                <span className="absolute left-0 -bottom-2 w-full h-1 bg-primary rounded-full" />
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Hammer,
+                heading: "Kompletne Zaplecze",
+                text: "Własne koparki, rusztowania i nowoczesne szalunki systemowe — bez zależności od podwykonawców.",
+                id: "zaplecze",
+              },
+              {
+                icon: Tag,
+                heading: "Oszczędność",
+                text: "Specjalne zniżki dla naszych klientów w zaprzyjaźnionych hurtowniach budowlanych.",
+                id: "oszczednosc",
+              },
+              {
+                icon: ShieldCheck,
+                heading: "Elastyczność",
+                text: "Realizujemy budowy etapami i chętnie przejmujemy już rozpoczęte projekty.",
+                id: "elastycznosc",
+              },
+              {
+                icon: Lightbulb,
+                heading: "Doradztwo",
+                text: "Nie tylko budujemy — aktywnie doradzamy najlepsze rozwiązania techniczne dla każdego projektu.",
+                id: "doradztwo",
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -6 }}
+                  className="group bg-[#1a1a1a] border-2 border-transparent hover:border-primary/60 rounded-sm p-8 flex flex-col gap-5 transition-colors duration-300 cursor-default"
+                  data-testid={`why-card-${item.id}`}
+                >
+                  <div className="w-14 h-14 flex items-center justify-center rounded-sm bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors duration-300">
+                    <Icon size={30} strokeWidth={1.75} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-black uppercase tracking-wide mb-3 text-foreground">
+                      {item.heading}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {item.text}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* About Us */}
-      <section id="o-nas" className="py-24 bg-background">
+      <section id="o-nas" className="py-24 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
