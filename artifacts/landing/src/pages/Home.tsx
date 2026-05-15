@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb } from "lucide-react";
 
 import img24 from "@assets/24_1778844190815.jpeg";
@@ -36,17 +33,6 @@ import imgF39 from "@assets/39_1778844660564.jpeg";
 import imgF40 from "@assets/40_1778844660565.jpeg";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 
 type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury" | "Wykończenia i Wnętrza" | "Baseny i Projekty Specjalne";
 
@@ -89,11 +75,6 @@ const GALLERY: { src: string; caption: string; category: GalleryCategory; featur
 
 const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Konstrukcje i Mury", "Solidne Fundamenty", "Wykończenia i Wnętrza", "Baseny i Projekty Specjalne"];
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Imię i nazwisko jest wymagane" }),
-  phone: z.string().min(9, { message: "Podaj poprawny numer telefonu" }),
-  serviceType: z.string().min(1, { message: "Wybierz rodzaj usługi" }),
-});
 
 const SERVICES = [
   { id: "budowa", title: "Budowa domów", desc: "stan surowy i deweloperski", icon: Building2 },
@@ -105,7 +86,6 @@ const SERVICES = [
 ];
 
 export default function Home() {
-  const { toast } = useToast();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [activeFilter, setActiveFilter] = useState<GalleryCategory>("Wszystkie");
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
@@ -113,24 +93,6 @@ export default function Home() {
   const filteredGallery = activeFilter === "Wszystkie"
     ? GALLERY.filter((img) => img.featuredInAll)
     : GALLERY.filter((img) => img.category === activeFilter);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      phone: "",
-      serviceType: "",
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Dziękujemy! Skontaktujemy się wkrótce.",
-      description: "Twoje zapytanie zostało wysłane pomyślnie.",
-    });
-    form.reset();
-  }
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -153,9 +115,12 @@ export default function Home() {
           <div className="hidden md:flex gap-8 items-center">
             <button onClick={() => scrollTo('uslugi')} className="text-sm font-bold uppercase hover:text-primary transition-colors">Usługi</button>
             <button onClick={() => scrollTo('o-nas')} className="text-sm font-bold uppercase hover:text-primary transition-colors">O nas</button>
-            <Button onClick={() => scrollTo('kontakt')} className="font-bold uppercase tracking-wide">
-              Darmowa Wycena
-            </Button>
+            <a href="tel:888392132">
+              <Button className="font-bold uppercase tracking-wide flex items-center gap-2">
+                <Phone size={16} />
+                Darmowa Wycena
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Nav Toggle */}
@@ -169,9 +134,12 @@ export default function Home() {
           <div className="md:hidden bg-background border-b border-border px-6 py-4 flex flex-col gap-4">
             <button onClick={() => scrollTo('uslugi')} className="text-left text-lg font-bold uppercase">Usługi</button>
             <button onClick={() => scrollTo('o-nas')} className="text-left text-lg font-bold uppercase">O nas</button>
-            <Button onClick={() => scrollTo('kontakt')} className="w-full font-bold uppercase mt-2">
-              Darmowa Wycena
-            </Button>
+            <a href="tel:888392132" className="block">
+              <Button className="w-full font-bold uppercase mt-2 flex items-center justify-center gap-2">
+                <Phone size={16} />
+                Darmowa Wycena
+              </Button>
+            </a>
           </div>
         )}
       </nav>
@@ -583,83 +551,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section id="kontakt" className="py-24 bg-background">
-        <div className="max-w-3xl mx-auto px-6">
+      {/* CTA — Phone */}
+      <section
+        id="kontakt"
+        className="relative py-28 overflow-hidden"
+      >
+        {/* Background image with dark overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${imgDom3})` }}
+        />
+        <div className="absolute inset-0 bg-background/88" />
+
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-card p-8 md:p-12 rounded-sm border border-border shadow-2xl"
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center gap-8"
           >
-            <h2 className="text-3xl md:text-4xl font-black uppercase mb-2">Zamów bezpłatną wycenę</h2>
-            <p className="text-muted-foreground mb-8">Zostaw swoje dane, a my skontaktujemy się z Tobą w ciągu 24 godzin, aby omówić szczegóły Twojego projektu.</p>
-            
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase font-bold text-xs tracking-wider">Imię i nazwisko</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Jan Kowalski" className="bg-background h-12" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase font-bold text-xs tracking-wider">Numer telefonu</FormLabel>
-                      <FormControl>
-                        <Input placeholder="+48 XXX XXX XXX" type="tel" className="bg-background h-12" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            {/* Icon ring */}
+            <div className="w-20 h-20 rounded-full bg-primary/15 border-2 border-primary flex items-center justify-center">
+              <Phone className="text-primary" size={36} />
+            </div>
 
-                <FormField
-                  control={form.control}
-                  name="serviceType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="uppercase font-bold text-xs tracking-wider">Rodzaj usługi</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="bg-background h-12">
-                            <SelectValue placeholder="Wybierz usługę..." />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {SERVICES.map((service) => (
-                            <SelectItem key={service.id} value={service.title}>
-                              {service.title}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            {/* Heading */}
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-5xl font-black uppercase leading-tight">
+                Potrzebujesz wyceny?{" "}
+                <span className="text-primary">Zadzwoń teraz</span>
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
+                Omów szczegóły swojego projektu bezpośrednio z Panem Wojciechem.
+                Gwarantujemy fachowe doradztwo i darmową wycenę.
+              </p>
+            </div>
 
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full text-lg h-14 font-black uppercase tracking-wider mt-4"
-                  data-testid="submit-contact"
-                >
-                  Wyślij zapytanie
-                </Button>
-              </form>
-            </Form>
+            {/* Large phone number display */}
+            <a
+              href="tel:888392132"
+              className="text-5xl md:text-7xl font-black tracking-widest text-primary hover:text-primary/80 transition-colors"
+            >
+              888 392 132
+            </a>
+
+            {/* CTA button */}
+            <a href="tel:888392132" className="w-full sm:w-auto">
+              <button
+                className="flex items-center justify-center gap-3 bg-primary text-background font-black uppercase tracking-widest text-lg px-10 py-5 rounded-sm shadow-xl hover:bg-primary/90 active:scale-[0.98] transition-all duration-150 w-full sm:w-auto"
+                data-testid="cta-call-button"
+              >
+                <Phone size={22} />
+                Zadzwoń: 888 392 132
+              </button>
+            </a>
+
+            {/* Trust line */}
+            <p className="text-muted-foreground text-sm uppercase tracking-widest">
+              Bezpłatna konsultacja · Bez zobowiązań · Odpowiadamy od ręki
+            </p>
           </motion.div>
         </div>
       </section>
