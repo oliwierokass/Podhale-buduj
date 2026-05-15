@@ -4,19 +4,28 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb } from "lucide-react";
 
-import img21 from "@assets/21_1778844190814.jpeg";
-import img23 from "@assets/23_1778844190815.jpeg";
-import img25 from "@assets/25_1778844190816.jpeg";
 import img27 from "@assets/27_1778844190817.jpeg";
 import img28 from "@assets/28_1778844190817.jpeg";
 import img20 from "@assets/20_1778844190813.jpeg";
 import img22 from "@assets/22_1778844190814.jpeg";
-import img24 from "@assets/24_1778844190815.jpeg";
-import img26 from "@assets/26_1778844190816.jpeg";
 import img2 from "@assets/2_1778844190811.jpeg";
 import img3 from "@assets/3_1778844190812.jpeg";
 import img4 from "@assets/4_1778844190812.jpeg";
 import img5 from "@assets/5_1778844190812.jpeg";
+import imgBasen1 from "@assets/basen_1_1778844660565.jpeg";
+import imgBasen2 from "@assets/basen_2_1778844660565.jpeg";
+import imgBasen3 from "@assets/basen_3_1778844660566.jpeg";
+import imgDom1 from "@assets/dom_1_1778844660566.jpeg";
+import imgDom2 from "@assets/dom_2_1778844660567.jpeg";
+import imgDom3 from "@assets/dom_3_1778844660567.jpeg";
+import imgDom4 from "@assets/dom_4_1778844660568.jpeg";
+import imgDom5 from "@assets/dom_5_1778844660568.jpeg";
+import imgDom9 from "@assets/dom_9_1778844660568.jpeg";
+import imgF36 from "@assets/36_1778844660563.jpeg";
+import imgF37 from "@assets/37_1778844660563.jpeg";
+import imgF38 from "@assets/38_1778844660564.jpeg";
+import imgF39 from "@assets/39_1778844660564.jpeg";
+import imgF40 from "@assets/40_1778844660565.jpeg";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,25 +40,39 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 
-type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury" | "Prace Wykończeniowe";
+type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury" | "Prace Wykończeniowe" | "Baseny i Projekty Specjalne";
 
-const GALLERY = [
-  { src: img21, caption: "Precyzyjne zbrojenie płyty fundamentowej", category: "Solidne Fundamenty" as GalleryCategory },
-  { src: img23, caption: "Siatka zbrojeniowa – przygotowanie pod betonowanie", category: "Solidne Fundamenty" as GalleryCategory },
-  { src: img27, caption: "Systemowe szalunki fundamentowe ULMA", category: "Solidne Fundamenty" as GalleryCategory },
-  { src: img28, caption: "Montaż szalunków ULMA – fundamenty głębinowe", category: "Solidne Fundamenty" as GalleryCategory },
-  { src: img25, caption: "Zbrojenie stropu – widok z góry, teren Podhala", category: "Solidne Fundamenty" as GalleryCategory },
-  { src: img20, caption: "Strop monolityczny w trakcie realizacji", category: "Konstrukcje i Mury" as GalleryCategory },
-  { src: img22, caption: "Murowanie ścian z bloczków ACC – stan surowy", category: "Konstrukcje i Mury" as GalleryCategory },
-  { src: img24, caption: "Zbrojenie i szalunki schodów żelbetowych", category: "Konstrukcje i Mury" as GalleryCategory },
-  { src: img26, caption: "Deskowanie i zbrojenie stropu – systemowe szalunki", category: "Konstrukcje i Mury" as GalleryCategory },
-  { src: img2, caption: "Gotowy sufit podwieszany G-K z integracją klimatyzacji", category: "Prace Wykończeniowe" as GalleryCategory },
-  { src: img4, caption: "Stelaż systemowy G-K pod sufit podwieszany", category: "Prace Wykończeniowe" as GalleryCategory },
-  { src: img5, caption: "Precyzyjny montaż profili sufitowych G-K", category: "Prace Wykończeniowe" as GalleryCategory },
-  { src: img3, caption: "Układanie płyt G-K na gotowej konstrukcji", category: "Prace Wykończeniowe" as GalleryCategory },
+const GALLERY: { src: string; caption: string; category: GalleryCategory; featured?: boolean }[] = [
+  // Featured first in "Wszystkie"
+  { src: imgDom3, caption: "Budowa domu murowanego – stan surowy otwarty", category: "Konstrukcje i Mury", featured: true },
+  { src: imgDom4, caption: "Więźba dachowa i ściany szczytowe – stan surowy", category: "Konstrukcje i Mury", featured: true },
+  { src: imgBasen3, caption: "Gotowy basen ogrodowy z obrysem z płyt tarasowych", category: "Baseny i Projekty Specjalne" },
+  // Konstrukcje i Mury
+  { src: imgDom1, caption: "Tradycyjna konstrukcja drewniana w stylu podhalańskim", category: "Konstrukcje i Mury" },
+  { src: imgDom2, caption: "Budowa domu drewnianego – deskowanie i pokrycie dachowe", category: "Konstrukcje i Mury" },
+  { src: imgDom5, caption: "Kompleksowa budowa – izolacja i drenaż fundamentów", category: "Konstrukcje i Mury" },
+  { src: imgDom9, caption: "Aktywne prace budowlane – stan surowy z maszynerią", category: "Konstrukcje i Mury" },
+  { src: img20, caption: "Strop monolityczny w trakcie realizacji", category: "Konstrukcje i Mury" },
+  { src: img22, caption: "Murowanie ścian z bloczków ACC – stan surowy", category: "Konstrukcje i Mury" },
+  // Solidne Fundamenty
+  { src: imgF38, caption: "Zbrojenie stropu z panoramą Tatr w tle", category: "Solidne Fundamenty" },
+  { src: imgF36, caption: "Precyzyjna wylewka płyty fundamentowej", category: "Solidne Fundamenty" },
+  { src: imgF37, caption: "Zbrojenie ław fundamentowych – wiązanie prętów", category: "Solidne Fundamenty" },
+  { src: imgF39, caption: "Ściany fundamentowe z bloczków betonowych", category: "Solidne Fundamenty" },
+  { src: imgF40, caption: "Betonowanie ław w szalunkach drewnianych", category: "Solidne Fundamenty" },
+  { src: img27, caption: "Systemowe szalunki fundamentowe ULMA", category: "Solidne Fundamenty" },
+  { src: img28, caption: "Montaż szalunków ULMA – fundamenty głębinowe", category: "Solidne Fundamenty" },
+  // Baseny
+  { src: imgBasen1, caption: "Kompleksowy montaż basenu – osadzanie misy basenowej", category: "Baseny i Projekty Specjalne" },
+  { src: imgBasen2, caption: "Transport i osadzanie basenu żurawiem dźwigowym", category: "Baseny i Projekty Specjalne" },
+  // Prace Wykończeniowe
+  { src: img2, caption: "Gotowy sufit podwieszany G-K z integracją klimatyzacji", category: "Prace Wykończeniowe" },
+  { src: img4, caption: "Stelaż systemowy G-K pod sufit podwieszany", category: "Prace Wykończeniowe" },
+  { src: img5, caption: "Precyzyjny montaż profili sufitowych G-K", category: "Prace Wykończeniowe" },
+  { src: img3, caption: "Układanie płyt G-K na gotowej konstrukcji", category: "Prace Wykończeniowe" },
 ];
 
-const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Solidne Fundamenty", "Konstrukcje i Mury", "Prace Wykończeniowe"];
+const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Konstrukcje i Mury", "Solidne Fundamenty", "Prace Wykończeniowe", "Baseny i Projekty Specjalne"];
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Imię i nazwisko jest wymagane" }),
