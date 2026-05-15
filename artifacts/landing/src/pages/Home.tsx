@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb } from "lucide-react";
+
+import img21 from "@assets/21_1778844190814.jpeg";
+import img23 from "@assets/23_1778844190815.jpeg";
+import img25 from "@assets/25_1778844190816.jpeg";
+import img27 from "@assets/27_1778844190817.jpeg";
+import img28 from "@assets/28_1778844190817.jpeg";
+import img20 from "@assets/20_1778844190813.jpeg";
+import img22 from "@assets/22_1778844190814.jpeg";
+import img24 from "@assets/24_1778844190815.jpeg";
+import img26 from "@assets/26_1778844190816.jpeg";
+import img2 from "@assets/2_1778844190811.jpeg";
+import img3 from "@assets/3_1778844190812.jpeg";
+import img4 from "@assets/4_1778844190812.jpeg";
+import img5 from "@assets/5_1778844190812.jpeg";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +30,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+
+type GalleryCategory = "Wszystkie" | "Solidne Fundamenty" | "Konstrukcje i Mury" | "Prace Wykończeniowe";
+
+const GALLERY = [
+  { src: img21, caption: "Precyzyjne zbrojenie płyty fundamentowej", category: "Solidne Fundamenty" as GalleryCategory },
+  { src: img23, caption: "Siatka zbrojeniowa – przygotowanie pod betonowanie", category: "Solidne Fundamenty" as GalleryCategory },
+  { src: img27, caption: "Systemowe szalunki fundamentowe ULMA", category: "Solidne Fundamenty" as GalleryCategory },
+  { src: img28, caption: "Montaż szalunków ULMA – fundamenty głębinowe", category: "Solidne Fundamenty" as GalleryCategory },
+  { src: img25, caption: "Zbrojenie stropu – widok z góry, teren Podhala", category: "Solidne Fundamenty" as GalleryCategory },
+  { src: img20, caption: "Strop monolityczny w trakcie realizacji", category: "Konstrukcje i Mury" as GalleryCategory },
+  { src: img22, caption: "Murowanie ścian z bloczków ACC – stan surowy", category: "Konstrukcje i Mury" as GalleryCategory },
+  { src: img24, caption: "Zbrojenie i szalunki schodów żelbetowych", category: "Konstrukcje i Mury" as GalleryCategory },
+  { src: img26, caption: "Deskowanie i zbrojenie stropu – systemowe szalunki", category: "Konstrukcje i Mury" as GalleryCategory },
+  { src: img2, caption: "Gotowy sufit podwieszany G-K z integracją klimatyzacji", category: "Prace Wykończeniowe" as GalleryCategory },
+  { src: img4, caption: "Stelaż systemowy G-K pod sufit podwieszany", category: "Prace Wykończeniowe" as GalleryCategory },
+  { src: img5, caption: "Precyzyjny montaż profili sufitowych G-K", category: "Prace Wykończeniowe" as GalleryCategory },
+  { src: img3, caption: "Układanie płyt G-K na gotowej konstrukcji", category: "Prace Wykończeniowe" as GalleryCategory },
+];
+
+const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Solidne Fundamenty", "Konstrukcje i Mury", "Prace Wykończeniowe"];
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Imię i nazwisko jest wymagane" }),
@@ -35,6 +69,12 @@ const SERVICES = [
 export default function Home() {
   const { toast } = useToast();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [activeFilter, setActiveFilter] = useState<GalleryCategory>("Wszystkie");
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+
+  const filteredGallery = activeFilter === "Wszystkie"
+    ? GALLERY
+    : GALLERY.filter((img) => img.category === activeFilter);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -332,6 +372,102 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Nasze Realizacje Gallery */}
+      <section id="realizacje" className="py-24 bg-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-black uppercase mb-4">Nasze Realizacje</h2>
+            <p className="text-muted-foreground text-lg">Wybrane projekty z terenu Podhala i okolic</p>
+          </motion.div>
+
+          {/* Filter Tabs */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-3 mb-10"
+          >
+            {GALLERY_CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                data-testid={`gallery-filter-${cat}`}
+                className={`px-5 py-2 text-sm font-bold uppercase tracking-wider border-2 rounded-sm transition-all duration-200 ${
+                  activeFilter === cat
+                    ? "bg-primary text-background border-primary"
+                    : "bg-transparent text-muted-foreground border-border hover:border-primary/60 hover:text-foreground"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Grid */}
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            {filteredGallery.map((item, index) => (
+              <motion.div
+                key={item.src}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.06 }}
+                className="group relative overflow-hidden rounded-sm cursor-pointer aspect-[4/3]"
+                onClick={() => setLightboxSrc(item.src)}
+                data-testid={`gallery-item-${index}`}
+              >
+                <img
+                  src={item.src}
+                  alt={item.caption}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <span className="inline-block bg-primary text-background text-xs font-bold uppercase tracking-wider px-2 py-0.5 mb-2 rounded-sm">
+                    {item.category}
+                  </span>
+                  <p className="text-white text-sm font-semibold leading-tight">{item.caption}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Lightbox */}
+      {lightboxSrc && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setLightboxSrc(null)}
+          data-testid="lightbox-overlay"
+        >
+          <button
+            className="absolute top-5 right-5 text-white hover:text-primary transition-colors"
+            onClick={() => setLightboxSrc(null)}
+            data-testid="lightbox-close"
+          >
+            <X size={36} />
+          </button>
+          <img
+            src={lightboxSrc}
+            alt="Realizacja"
+            className="max-w-full max-h-[90vh] object-contain rounded-sm shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       {/* Customer Reviews */}
       <section className="py-24 bg-[#1a1a1a]">
