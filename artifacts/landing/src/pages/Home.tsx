@@ -736,7 +736,7 @@ export default function Home() {
 
           <div>
             <h3 className="text-lg font-bold uppercase text-foreground mb-6">Kontakt</h3>
-            <div className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Telefon */}
               <div className="flex gap-3">
                 <Phone className="text-primary shrink-0 mt-0.5" size={18} />
@@ -744,19 +744,6 @@ export default function Home() {
                   <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground mb-1">Telefon</p>
                   <a href="tel:888392132" className="text-primary font-bold hover:text-primary/80 transition-colors text-sm">
                     888 392 132
-                  </a>
-                </div>
-              </div>
-              {/* E-mail */}
-              <div className="flex gap-3">
-                <Mail className="text-primary shrink-0 mt-0.5" size={18} />
-                <div>
-                  <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground mb-1">E-mail</p>
-                  <a
-                    href="mailto:wojciechwrobel.budownictwo@gmail.com"
-                    className="text-foreground text-sm hover:text-primary transition-colors whitespace-nowrap"
-                  >
-                    wojciechwrobel.budownictwo@gmail.com
                   </a>
                 </div>
               </div>
