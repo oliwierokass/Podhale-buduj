@@ -569,20 +569,19 @@ export default function Home() {
               Gdzie Działamy?
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-              Nasza firma zapewnia kompleksową obsługę inwestycji na terenie całego regionu.
-              Dysponujemy własnym transportem i zapleczem technicznym, co pozwala nam na sprawną
-              realizację zleceń w każdym wskazanym przez Inwestora miejscu.
+              Lokalna firma z Nowego Targu z wieloletnim doświadczeniem w górskim budownictwie.
+              Znamy specyfikę terenu i wymagania budowlane tego regionu.
             </p>
           </motion.div>
 
           {/* 4-column grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { Icon: MapPin,      title: "Elastyczność",        text: "Dojedziemy w każde miejsce realizacji" },
-              { Icon: Truck,       title: "Własny Transport",    text: "Bezpieczny dowóz maszyn i materiałów" },
-              { Icon: Clock,       title: "Punktualność",        text: "Szybka logistyka i dotrzymywanie terminów" },
-              { Icon: ShieldCheck, title: "Wsparcie techniczne", text: "Pełna opieka nad placem budowy" },
-            ].map(({ Icon, title, text }, index) => (
+              { title: "Powiat nowotarski", text: "Nowy Targ i okolice" },
+              { title: "Powiat tatrzański", text: "Zakopane i okolice" },
+              { title: "Powiat suski",      text: "Sucha Beskidzka" },
+              { title: "Szczawnica",        text: "i okolice" },
+            ].map(({ title, text }, index) => (
               <motion.div
                 key={title}
                 initial={{ opacity: 0, y: 20 }}
@@ -593,7 +592,7 @@ export default function Home() {
                 style={{ backgroundColor: "#232323" }}
               >
                 <div className="w-14 h-14 rounded-full flex items-center justify-center bg-primary/15 group-hover:bg-primary/25 transition-colors duration-200">
-                  <Icon className="text-primary" size={26} />
+                  <MapPin className="text-primary" size={26} />
                 </div>
                 <div>
                   <p className="text-white font-black text-lg uppercase tracking-wide leading-snug">
