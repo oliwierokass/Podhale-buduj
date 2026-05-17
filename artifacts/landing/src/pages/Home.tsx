@@ -424,6 +424,65 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Nasze Atuty */}
+      <section className="py-24 bg-background">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <p className="text-primary text-xs font-extrabold uppercase tracking-[0.2em] mb-3">Nasze Atuty</p>
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white">Dlaczego Inwestorzy Nas Wybierają?</h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Hammer,
+                title: "Kompletne Zaplecze",
+                text: "Własne koparki, rusztowania i nowoczesne szalunki systemowe — bez zależności od podwykonawców.",
+              },
+              {
+                icon: Tag,
+                title: "Oszczędność",
+                text: "Specjalne zniżki dla naszych klientów w zaprzyjaźnionych hurtowniach budowlanych.",
+              },
+              {
+                icon: Truck,
+                title: "Elastyczność",
+                text: "Realizujemy budowę etapami i chętnie przejmujemy już rozpoczęte projekty.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Doradztwo",
+                text: "Nie tylko budujemy — aktywnie doradzamy najlepsze rozwiązania techniczne dla każdego projektu.",
+              },
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5, boxShadow: "0 0 0 2px #f59e0b" }}
+                  className="bg-[#1a1a1a] border border-border rounded-xl p-7 flex flex-col gap-4 transition-all duration-300 cursor-default"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                    <Icon size={26} />
+                  </div>
+                  <h3 className="text-lg font-black uppercase text-white">{item.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{item.text}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Nasze Realizacje Gallery */}
       <section id="realizacje" className="py-24 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-6">
