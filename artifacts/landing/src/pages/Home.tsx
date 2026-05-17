@@ -76,13 +76,46 @@ const GALLERY: { src: string; caption: string; category: GalleryCategory; featur
 const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Konstrukcje i Mury", "Solidne Fundamenty", "Wykończenia i Wnętrza", "Baseny i Projekty Specjalne"];
 
 
-const SERVICES = [
-  { id: "budowa", title: "Budowa domów", desc: "stan surowy i deweloperski", icon: Building2 },
-  { id: "fundamenty", title: "Fundamenty", desc: "i prace betoniarskie", icon: Layers },
-  { id: "wykonczenia", title: "Wykańczanie wnętrz", desc: "płytki, panele, gładzie", icon: PaintBucket },
-  { id: "ocieplenia", title: "Ocieplenia", desc: "poddaszy i elewacji", icon: Thermometer },
-  { id: "zabudowy", title: "Zabudowy G-K", desc: "i sufity podwieszane", icon: LayoutGrid },
-  { id: "remonty", title: "Remonty", desc: "i rozbiórki", icon: Hammer },
+const SERVICE_CARDS = [
+  {
+    id: "stan-surowy",
+    title: "Stan Surowy & Konstrukcje",
+    icon: Building2,
+    items: [
+      "Wylewanie i wykonywanie fundamentów (w tym płyty fundamentowe)",
+      "Kompleksowe murowanie ścian nośnych i działowych",
+      "Pokrycia dachowe wraz z konstrukcją więźby",
+      "Budowa domów jednorodzinnych, luksusowych oraz małych domów",
+      "Budowa garaży, tarasów oraz budynków dodatkowych / przybudówek",
+      "Budowa murów oporowych i ogrodzeń",
+      "Rozbiórki i drobne prace wyburzeniowe",
+    ],
+  },
+  {
+    id: "elewacje",
+    title: "Elewacje & Prace Zewnętrzne",
+    icon: ShieldCheck,
+    items: [
+      "Wykonywanie profesjonalnych elewacji budynków",
+      "Kompleksowe ocieplenia i izolacje termiczne/przeciwwilgociowe",
+      "Systemy drenażu oraz odwodnienia terenu",
+      "Układanie kostki brukowej wokół posesji i na podjazdach",
+      "Malowanie powierzchni zewnętrznych i zabezpieczanie konstrukcji",
+    ],
+  },
+  {
+    id: "wykonczenia",
+    title: "Wykończenia Wnętrz Premium",
+    icon: PaintBucket,
+    items: [
+      "Kompleksowe wykańczanie wnętrz i remonty domów pod klucz",
+      "Montaż systemowych zabudów z płyt gipsowo-kartonowych (G-K)",
+      "Profesjonalne szpachlowanie i malowanie wnętrz",
+      "Kładzenie posadzek oraz precyzyjna wymiana i układanie kafelków",
+      "Tradycyjne boazerie oraz artystyczne wykończenia w drewnie",
+      "Doradztwo techniczne i materiałowe na każdym etapie projektu",
+    ],
+  },
 ];
 
 export default function Home() {
@@ -218,7 +251,7 @@ export default function Home() {
       {/* Services Grid */}
       <section id="uslugi" className="py-24 bg-[#1a1a1a]">
         <div className="max-w-7xl mx-auto px-6">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -226,27 +259,35 @@ export default function Home() {
           >
             Nasze Usługi
           </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service, index) => {
-              const Icon = service.icon;
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {SERVICE_CARDS.map((card, index) => {
+              const Icon = card.icon;
               return (
                 <motion.div
-                  key={service.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={card.id}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-card p-8 rounded-sm border-2 border-transparent hover:border-primary transition-all group"
-                  data-testid={`service-card-${service.id}`}
+                  transition={{ delay: index * 0.12 }}
+                  whileHover={{ y: -6 }}
+                  className="group bg-[#1e1e1e] rounded-xl border-2 border-transparent hover:border-primary transition-all duration-300 p-8 flex flex-col"
+                  data-testid={`service-card-${card.id}`}
                 >
-                  <div className="w-14 h-14 bg-primary/10 flex items-center justify-center rounded-sm mb-6 text-primary group-hover:scale-110 transition-transform">
-                    <Icon size={32} />
+                  <div className="w-14 h-14 bg-primary/10 flex items-center justify-center rounded-lg mb-6 text-primary group-hover:bg-primary/20 transition-colors">
+                    <Icon size={30} />
                   </div>
-                  <h3 className="text-xl font-bold uppercase mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground">{service.desc}</p>
+                  <h3 className="text-xl font-black uppercase mb-6 text-white">{card.title}</h3>
+                  <ul className="flex flex-col gap-3">
+                    {card.items.map((item, i) => (
+                      <li key={i} className="flex gap-3 items-start text-gray-300 text-sm leading-relaxed">
+                        <span className="text-primary font-black mt-0.5 shrink-0">▸</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
-              )
+              );
             })}
           </div>
         </div>

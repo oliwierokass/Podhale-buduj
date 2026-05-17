@@ -1,0 +1,41 @@
+Please completely redesign and expand the "NASZE USŁUGI" (Our Services) section based on the comprehensive list of services provided. 
+
+Instead of a simple text list, structure the services into a professional 3-column grid layout with clean cards, matching our dark theme with orange (#f59e0b) accents.
+
+Structure and Content for the 3 Columns:
+
+1. CARD 1: Stan Surowy i Konstrukcje (Icon: Home/Construction)
+   - Title: "Stan Surowy & Konstrukcje"
+   - Bullet points (in Polish):
+     * Wylewanie i wykonywanie fundamentów (w tym płyty fundamentowe)
+     * Kompleksowe murowanie ścian nośnych i działowych
+     * Pokrycia dachowe wraz z konstrukcją więźby
+     * Budowa domów jednorodzinnych, luksusowych oraz małych domów
+     * Budowa garaży, tarasów oraz budynków dodatkowych / przybudówek
+     * Budowa murów oporowych i ogrodzeń
+     * Rozbiórki i drobne prace wyburzeniowe
+
+2. CARD 2: Prace Elewacyjne i Zewnętrzne (Icon: Paint Roller or Shield)
+   - Title: "Elewacje & Prace Zewnętrzne"
+   - Bullet points (in Polish):
+     * Wykonywanie profesjonalnych elewacji budynków
+     * Kompleksowe ocieplenia i izolacje termiczne/przeciwwilgociowe
+     * Systemy drenażu oraz odwodnienia terenu
+     * Układanie kostki brukowej wokół posesji i na podjazdach
+     * Malowanie powierzchni zewnętrznych i zabezpieczanie konstrukcji
+
+3. CARD 3: Wykończenia i Wnętrza Premium (Icon: Tools or Layer)
+   - Title: "Wykończenia Wnętrz Premium"
+   - Bullet points (in Polish):
+     * Kompleksowe wykańczanie wnętrz i remonty domów pod klucz
+     * Montaż systemowych zabudów z płyt gipsowo-kartonowych (G-K)
+     * Profesjonalne szpachlowanie i malowanie wnętrz
+     * Kładzenie posadzek oraz precyzyjna wymiana i układanie kafelków
+     * Tradycyjne boazerie oraz artystyczne wykończenia w drewnie
+     * Doradztwo techniczne i materiałowe na każdym etapie projektu
+
+Design Guidelines:
+- Display these 3 main categories as vertical cards side-by-side on desktop, stacking on mobile.
+- Use a dark background for the cards (#1e1e1e) with sharp white text and orange bullet points/icons.
+- Add a subtle lift or orange border highlight effect when a user hovers over a service card.
+- Maintain the general section heading layout ("NASZE USŁUGI") at the top.
