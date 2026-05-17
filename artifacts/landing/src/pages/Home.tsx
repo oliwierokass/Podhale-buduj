@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb, MapPin, Mail, Clock } from "lucide-react";
+import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb, MapPin, Mail, Clock, Truck } from "lucide-react";
 
 import img24 from "@assets/24_1778844190815.jpeg";
 import imgW2 from "@assets/wnetrze_2_1778845706384.jpeg";
@@ -569,36 +569,37 @@ export default function Home() {
               Gdzie Działamy?
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-              Lokalna firma z Nowego Targu z wieloletnim doświadczeniem w górskim budownictwie.
-              Znamy specyfikę terenu i wymagania budowlane tego regionu.
+              Nasza firma zapewnia kompleksową obsługę inwestycji na terenie całego regionu.
+              Dysponujemy własnym transportem i zapleczem technicznym, co pozwala nam na sprawną
+              realizację zleceń w każdym wskazanym przez Inwestora miejscu.
             </p>
           </motion.div>
 
           {/* 4-column grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { title: "Powiat nowotarski", text: "Nowy Targ i okolice" },
-              { title: "Powiat tatrzański", text: "Zakopane i okolice" },
-              { title: "Powiat suski",      text: "Sucha Beskidzka" },
-              { title: "Szczawnica",        text: "i okolice" },
-            ].map((area, index) => (
+              { Icon: MapPin,      title: "Elastyczność",        text: "Dojedziemy w każde miejsce realizacji" },
+              { Icon: Truck,       title: "Własny Transport",    text: "Bezpieczny dowóz maszyn i materiałów" },
+              { Icon: Clock,       title: "Punktualność",        text: "Szybka logistyka i dotrzymywanie terminów" },
+              { Icon: ShieldCheck, title: "Wsparcie techniczne", text: "Pełna opieka nad placem budowy" },
+            ].map(({ Icon, title, text }, index) => (
               <motion.div
-                key={area.title}
+                key={title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group flex flex-col items-center text-center gap-4 p-8 rounded-sm border border-white/10 transition-all duration-250 hover:border-primary hover:bg-white/5 cursor-default"
+                className="group flex flex-col items-center text-center gap-4 p-8 rounded-sm border border-white/10 transition-all duration-200 hover:border-primary hover:bg-white/5 cursor-default"
                 style={{ backgroundColor: "#232323" }}
               >
-                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-primary/15 group-hover:bg-primary/25 transition-colors duration-250">
-                  <MapPin className="text-primary" size={26} />
+                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-primary/15 group-hover:bg-primary/25 transition-colors duration-200">
+                  <Icon className="text-primary" size={26} />
                 </div>
                 <div>
                   <p className="text-white font-black text-lg uppercase tracking-wide leading-snug">
-                    {area.title}
+                    {title}
                   </p>
-                  <p className="text-gray-400 text-sm mt-1">{area.text}</p>
+                  <p className="text-gray-400 text-sm mt-1">{text}</p>
                 </div>
               </motion.div>
             ))}
@@ -698,7 +699,7 @@ export default function Home() {
                 <div>
                   <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground mb-1">Telefon</p>
                   <a href="tel:888392132" className="text-primary font-bold hover:text-primary/80 transition-colors text-sm">
-                    888 391 132
+                    888 392 132
                   </a>
                 </div>
               </div>
