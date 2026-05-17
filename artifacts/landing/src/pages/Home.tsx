@@ -367,10 +367,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="aspect-[4/5] rounded-sm overflow-hidden border-4 border-border relative z-10">
-              <img 
-                src="/images/about.png" 
-                alt="Wojciech Wróbel - Usługi Budowlane" 
+            <div className="aspect-[4/5] rounded-xl overflow-hidden border-4 border-border relative z-10">
+              <img
+                src={imgDom1}
+                alt="Dom w stylu podhalańskim – realizacja Wojciech Wróbel"
                 className="w-full h-full object-cover"
               />
             </div>
