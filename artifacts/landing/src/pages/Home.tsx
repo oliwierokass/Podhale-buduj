@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb, MapPin } from "lucide-react";
+import { Building2, Layers, PaintBucket, Thermometer, LayoutGrid, Hammer, Menu, X, Facebook, Phone, Tag, ShieldCheck, Lightbulb, MapPin, Mail, Clock } from "lucide-react";
 
 import img24 from "@assets/24_1778844190815.jpeg";
 import imgW2 from "@assets/wnetrze_2_1778845706384.jpeg";
@@ -690,19 +690,45 @@ export default function Home() {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold uppercase text-foreground mb-4">Kontakt</h3>
-            <a
-              href="tel:888392132"
-              className="flex items-center gap-3 group w-fit"
-            >
-              <Phone className="text-primary" size={20} />
-              <span className="text-xl font-black text-foreground group-hover:text-primary transition-colors">
-                888 392 132
-              </span>
-            </a>
-            <p className="mt-3 text-sm">
-              Nowy Targ, osiedle Gazdy 22
-            </p>
+            <h3 className="text-lg font-bold uppercase text-foreground mb-6">Kontakt</h3>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-7">
+              {/* Telefon */}
+              <div className="flex gap-3">
+                <Phone className="text-primary shrink-0 mt-0.5" size={18} />
+                <div>
+                  <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground mb-1">Telefon</p>
+                  <a href="tel:888392132" className="text-primary font-bold hover:text-primary/80 transition-colors text-sm">
+                    888 391 132
+                  </a>
+                </div>
+              </div>
+              {/* Lokalizacja */}
+              <div className="flex gap-3">
+                <MapPin className="text-primary shrink-0 mt-0.5" size={18} />
+                <div>
+                  <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground mb-1">Lokalizacja</p>
+                  <p className="text-foreground text-sm">Nowy Targ i cała Małopolska</p>
+                </div>
+              </div>
+              {/* E-mail */}
+              <div className="flex gap-3">
+                <Mail className="text-primary shrink-0 mt-0.5" size={18} />
+                <div>
+                  <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground mb-1">E-mail</p>
+                  <a href="mailto:biuro@wojtekbudownictwo.pl" className="text-foreground text-sm hover:text-primary transition-colors break-all">
+                    biuro@wojtekbudownictwo.pl
+                  </a>
+                </div>
+              </div>
+              {/* Godziny */}
+              <div className="flex gap-3">
+                <Clock className="text-primary shrink-0 mt-0.5" size={18} />
+                <div>
+                  <p className="text-[10px] font-extrabold uppercase tracking-widest text-muted-foreground mb-1">Godziny</p>
+                  <p className="text-foreground text-sm">Pon — Sob · 7:00 — 19:00</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
