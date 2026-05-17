@@ -21,6 +21,7 @@ import imgBasen1 from "@assets/basen_1_1778844660565.jpeg";
 import imgBasen2 from "@assets/basen_2_1778844660565.jpeg";
 import imgBasen3 from "@assets/basen_3_1778844660566.jpeg";
 import imgDom1 from "@assets/dom_1_1778844985146.jpeg";
+import imgAboutNew from "@assets/WhatsApp_Image_2026-05-12_at_14.59.42_(2)_1778979665322.jpeg";
 import imgDom2 from "@assets/dom_2_1778844985147.jpeg";
 import imgDom3 from "@assets/dom_3_1778844985147.jpeg";
 import imgDom4 from "@assets/dom_4_1778844985147.jpeg";
@@ -413,9 +414,9 @@ export default function Home() {
           >
             <div className="aspect-[4/5] rounded-xl overflow-hidden border-4 border-border relative z-10">
               <img
-                src="/images/rebar.png"
-                alt="Zbrojenie i szalunek – realizacja Wojciech Wróbel"
-                className="w-full h-full object-cover"
+                src={imgAboutNew}
+                alt="Płyta fundamentowa z prętami zbrojeniowymi – realizacja Wojciech Wróbel"
+                className="w-full h-full object-cover object-center"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 w-full h-full bg-primary/20 rounded-sm z-0"></div>
