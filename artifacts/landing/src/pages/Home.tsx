@@ -674,40 +674,40 @@ export default function Home() {
       <footer className="bg-background border-t border-border pt-16 pb-8 text-muted-foreground">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <div>
-            <h3 className="text-xl font-black uppercase text-foreground mb-4">Wojciech Wróbel</h3>
-            <p className="mb-2">Usługi Budowlane</p>
+            <h3 className="text-xl font-black uppercase text-foreground mb-1">Wojciech Wróbel</h3>
+            <p className="text-primary text-sm font-semibold mb-3">Usługi Budowlane Wojciech Wróbel | Nowy Targ</p>
             <p>Nowy Targ, osiedle Gazdy 22</p>
             <p>Polska</p>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-bold uppercase text-foreground mb-4">Na skróty</h3>
             <ul className="space-y-3">
               <li><button onClick={() => scrollTo('uslugi')} className="hover:text-primary transition-colors">Nasze Usługi</button></li>
               <li><button onClick={() => scrollTo('o-nas')} className="hover:text-primary transition-colors">O Nas</button></li>
-              <li><button onClick={() => scrollTo('kontakt')} className="hover:text-primary transition-colors">Zamów Wycenę</button></li>
+              <li><button onClick={() => scrollTo('kontakt')} className="hover:text-primary transition-colors">Zadzwoń po wycenę</button></li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-bold uppercase text-foreground mb-4">Kontakt</h3>
-            <div className="flex items-center gap-3 mb-4">
+            <a
+              href="tel:888392132"
+              className="flex items-center gap-3 group w-fit"
+            >
               <Phone className="text-primary" size={20} />
-              <span className="text-xl font-bold text-foreground">+48 500 000 000</span>
-            </div>
-            <div className="flex gap-4 mt-6">
-              <a href="#" className="w-10 h-10 rounded-full bg-card flex items-center justify-center hover:bg-primary hover:text-background transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="h-10 px-4 rounded-full bg-card flex items-center justify-center font-bold hover:bg-primary hover:text-background transition-colors">
-                OLX
-              </a>
-            </div>
+              <span className="text-xl font-black text-foreground group-hover:text-primary transition-colors">
+                888 392 132
+              </span>
+            </a>
+            <p className="mt-3 text-sm">
+              Nowy Targ, osiedle Gazdy 22
+            </p>
           </div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-border text-sm text-center">
-          &copy; 2025 Usługi Budowlane Wojciech Wróbel. Wszelkie prawa zastrzeżone.
+          &copy; 2026 Usługi Budowlane Wojciech Wróbel. Wszelkie prawa zastrzeżone.
         </div>
       </footer>
     </div>
