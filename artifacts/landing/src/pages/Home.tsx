@@ -147,9 +147,9 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[100dvh] flex items-center pt-20">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/images/hero.png" 
-            alt="Budowa domu w górach" 
+          <img
+            src="/images/hero-real.jpg"
+            alt="Budowa domu w górach – zbrojenie i szalunek"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/60" />
