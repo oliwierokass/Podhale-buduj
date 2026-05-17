@@ -346,6 +346,9 @@ export default function Home() {
               <p>
                 Niezależnie od tego, czy planujesz budowę domu od podstaw, czy generalny remont – gwarantujemy terminowość, najwyższą jakość materiałów i precyzję wykonania.
               </p>
+              <p>
+                Do każdego projektu podchodzimy w sposób indywidualny. Oferujemy kompleksowe usługi budowlane na terenie Nowego Targu i okolicznych miejscowości. Gwarantujemy rzetelność, dotrzymywanie ustalonych terminów oraz pełne zaangażowanie na każdym etapie współpracy. Skontaktuj się z nami, aby omówić szczegóły Twojej inwestycji!
+              </p>
             </div>
             
             <div className="mt-10 flex items-center gap-6">
