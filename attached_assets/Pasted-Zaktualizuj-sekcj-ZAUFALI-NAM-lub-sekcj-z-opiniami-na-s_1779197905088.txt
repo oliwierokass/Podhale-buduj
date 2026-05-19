@@ -1,0 +1,33 @@
+Zaktualizuj sekcję "ZAUFALI NAM" (lub sekcję z opiniami) na stronie internetowej, wprowadzając autentyczne recenzje naszych klientów. 
+
+Zmień układ kart oraz teksty na następujące (zachowaj 3 kolumny dla komputerów i 1 kolumnę dla telefonów):
+
+1. NAGŁÓWEK SEKCJI:
+   - Główny napis: "ZAUFALI NAM" (wielkie litery, kolor biały).
+   - Pod nagłówkiem dodaj krótki podnagłówek: "Opinie naszych klientów to najlepszy dowód na to, że jakość i terminowość to nasze priorytety."
+
+2. TREŚĆ TRZECH KART OPINII:
+
+   KARTA 1 (Po lewej):
+   - Inicjał w kółku: "K"
+   - Imię i Nazwisko: K. Słodyczka (pogrubione)
+   - Ocena: 5 żółtych gwiazdek (★★★★★)
+   - Treść opinii: "Bardzo rzetelna firma budowlana. Prace wykonane dokładnie, sprawnie i zgodnie z ustalonym terminem. To ekipa, której można zaufać – są słowni i rzetelni, a ogromny plus za doradztwo techniczne."
+
+   KARTA 2 (W środku):
+   - Inicjał w kółku: "E"
+   - Imię i Nazwisko: Ewa Sentysz (pogrubione)
+   - Ocena: 5 żółtych gwiazdek (★★★★★)
+   - Treść opinii: "Usługa wykonana profesjonalnie i na najwyższym poziomie. Kontakt z Panem Wojtkiem był doskonały. Wykazuje się dużą elastycznością – potrafi doradzić i zmodyfikować projekt pod wizję klienta."
+
+   KARTA 3 (Po prawej):
+   - Inicjał w kółku: "P"
+   - Imię i Nazwisko: Paweł Szymala (pogrubione)
+   - Ocena: 5 żółtych gwiazdek (★★★★★)
+   - Treść opinii: "Polecam! Świetna, zgrana ekipa. Całość prac wykonana solidnie i bez zarzutu. Termin i cena zgodnie z ustaleniami. Profesjonalne podejście do tematu."
+
+3. WYTYCZNE DOTYCZĄCE STYLIZACJI (CSS):
+   - Zachowaj ciemną kolorystykę tła całej sekcji.
+   - Same karty powinny mieć delikatnie ciemniejsze, grafitowe tło z zaokrąglonymi rogami, aby odznaczały się od tła głównego.
+   - Gwiazdki (★★★★★) oraz inicjały/imiona wyróżnij jaskrawym żółtym kolorem (#FFCC00), aby idealnie pasowały do brandingu MPP.
+   - Główne teksty opinii sformatuj w kolorze białym lub jasnoszarym, dbając o odpowiedni margines wewnętrzny (padding) i odstępy między kartami (gap: 20px).

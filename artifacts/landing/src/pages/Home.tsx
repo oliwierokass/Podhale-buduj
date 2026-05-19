@@ -539,29 +539,29 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary text-sm font-bold uppercase tracking-widest px-5 py-2 rounded-full mb-6">
-              <span>Średnia ocena 10/10 na podstawie 25+ opinii</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black uppercase">
-              Opinie Naszych Klientów
+              <h2 className="text-4xl md:text-5xl font-black uppercase text-white mb-4">
+              Zaufali Nam
             </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Opinie naszych klientów to najlepszy dowód na to, że jakość i terminowość to nasze priorytety.
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
                 name: "K. Słodyczka",
-                text: "Najwyższa jakość wykonania. Posadzka w hali idealnie gładka, a cała ekipa pod okiem pana Wojtka działała błyskawicznie. Pełen profesjonalizm i ocena 10/10!",
+                text: "Bardzo rzetelna firma budowlana. Prace wykonane dokładnie, sprawnie i zgodnie z ustalonym terminem. To ekipa, której można zaufać – są słowni i rzetelni, a ogromny plus za doradztwo techniczne.",
                 id: "slodyczka",
               },
               {
                 name: "Ewa Sentysz",
-                text: "Firma wykonywała u mnie podjazd oraz taras. Beton zatarty perfekcyjnie, równe spadki, zero poprawek. Zdecydowanie polecam każdemu, kto szuka trwałości na lata.",
+                text: "Usługa wykonana profesjonalnie i na najwyższym poziomie. Kontakt z Panem Wojtkiem był doskonały. Wykazuje się dużą elastycznością – potrafi doradzić i zmodyfikować projekt pod wizję klienta.",
                 id: "sentysz",
               },
               {
                 name: "Paweł Szymala",
-                text: "Świetny kontakt, terminowość i rzemiosło na najwyższym poziomie. Posadzka przemysłowa w warsztacie wygląda genialnie. Zasłużone 10/10.",
+                text: "Polecam! Świetna, zgrana ekipa. Całość prac wykonana solidnie i bez zarzutu. Termin i cena zgodnie z ustaleniami. Profesjonalne podejście do tematu.",
                 id: "szymala",
               },
             ].map((review, index) => (
@@ -571,27 +571,24 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-background rounded-sm border border-border p-8 flex flex-col gap-5"
+                className="bg-[#1e1e1e] rounded-xl border border-border p-8 flex flex-col gap-5"
                 data-testid={`review-card-${review.id}`}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg key={i} className="w-5 h-5 text-primary fill-primary" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-primary font-black text-lg tracking-tight">10/10</span>
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} className="w-5 h-5" style={{ color: '#FFCC00', fill: '#FFCC00' }} viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
                 </div>
                 <p className="text-gray-300 leading-relaxed flex-1">
                   &ldquo;{review.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3 pt-2 border-t border-border">
-                  <div className="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-black text-sm">
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center font-black text-sm" style={{ backgroundColor: 'rgba(255,204,0,0.15)', color: '#FFCC00' }}>
                     {review.name.charAt(0)}
                   </div>
-                  <span className="font-bold text-foreground">{review.name}</span>
+                  <span className="font-bold text-white">{review.name}</span>
                 </div>
               </motion.div>
             ))}
