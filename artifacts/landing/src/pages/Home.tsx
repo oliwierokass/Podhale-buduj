@@ -13,10 +13,6 @@ import img27 from "@assets/27_1778844190817.jpeg";
 import img28 from "@assets/28_1778844190817.jpeg";
 import img20 from "@assets/20_1778844190813.jpeg";
 import img22 from "@assets/22_1778844190814.jpeg";
-import img2 from "@assets/2_1778844190811.jpeg";
-import img3 from "@assets/3_1778844190812.jpeg";
-import img4 from "@assets/4_1778844190812.jpeg";
-import img5 from "@assets/5_1778844190812.jpeg";
 import imgBasen1 from "@assets/basen_1_1778844660565.jpeg";
 import imgBasen2 from "@assets/basen_2_1778844660565.jpeg";
 import imgBasen3 from "@assets/basen_3_1778844660566.jpeg";
@@ -68,10 +64,6 @@ const GALLERY: { src: string; caption: string; category: GalleryCategory; featur
   { src: imgW6, caption: "Artystyczne wykończenia w drewnie – tradycyjne detale podhalańskie i nowoczesny komfort.", category: "Wykończenia i Wnętrza", badge: "Kunszt Podhalański" },
   { src: imgW7, caption: "Artystyczne wykończenia w drewnie – tradycyjne detale podhalańskie i nowoczesny komfort.", category: "Wykończenia i Wnętrza", badge: "Kunszt Podhalański" },
   { src: imgWMural, caption: "Kompleksowe wykończenia mieszkań i apartamentów pod klucz.", category: "Wykończenia i Wnętrza" },
-  { src: img2, caption: "Gotowy sufit podwieszany G-K z integracją klimatyzacji", category: "Wykończenia i Wnętrza" },
-  { src: img4, caption: "Stelaż systemowy G-K pod sufit podwieszany", category: "Wykończenia i Wnętrza" },
-  { src: img5, caption: "Precyzyjny montaż profili sufitowych G-K", category: "Wykończenia i Wnętrza" },
-  { src: img3, caption: "Układanie płyt G-K na gotowej konstrukcji", category: "Wykończenia i Wnętrza" },
 ];
 
 const GALLERY_CATEGORIES: GalleryCategory[] = ["Wszystkie", "Konstrukcje i Mury", "Solidne Fundamenty", "Wykończenia i Wnętrza", "Baseny i Projekty Specjalne"];
